@@ -8,10 +8,7 @@
 years = [1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]
 income = [5000.0,7500.0,15000.0,20000.0,66000.0,72000.0,74500.0,80000.0,82000.0,98000.0]
 
-#Polynomial
-#set up matrix of values
-#use gaussian elimination
-
+#checks system has proper number of 0's
 def sysCheck(sys):
 
 	num_zeros = 0
@@ -236,8 +233,6 @@ def solveGaussianSystem(degree):
 		equation_string = "Linear: "+equation_string
 	elif degree == 2:
 		equation_string = "Quadratic: "+equation_string
-	elif degree == 3:
-		equation_string = "Cubic: "+equation_string
 
 	#find income at year 15
 	power = 0
@@ -256,7 +251,6 @@ def solveGaussianSystem(degree):
 	print(equation_string)
 
 
-
+#func calls
 solveGaussianSystem(1)
 solveGaussianSystem(2)
-solveGaussianSystem(3)
