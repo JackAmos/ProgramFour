@@ -62,8 +62,9 @@ def solveGaussianSystem(degree):
 
 		if power == iterator:
 
-			power-=(degree-1)
-			iterator+=1
+			power-=1
+			iterator+=degree
+
 
 	#create gaussian product arrays
 	prod_values = []
@@ -75,10 +76,11 @@ def solveGaussianSystem(degree):
 
 		while i < len(years):
 
-			ySigma+=(income[i]+pow(years[i],power))
+			ySigma+=(income[i]*pow(years[i],power))
 			i+=1
 
 		power+=1
+		i = 0
 
 		prod_values.append(ySigma)
 		ySigma = 0.0
@@ -222,11 +224,11 @@ def solveGaussianSystem(degree):
 	equation_string = ""
 	i = 2
 
-	equation_string = str(x_values[1])+"x+"+str(x_values[0])
+	equation_string = str("{:.4f}".format(x_values[1]))+"x+"+str("{:.4f}".format(x_values[0]))
 
 	while i < len(x_values):
 
-		equation_string = str(x_values[i])+"x^"+str(i)+"+"+equation_string
+		equation_string = str("{:.4f}".format(x_values[i]))+"x^"+str(i)+"+"+equation_string
 		i+=1
 
 
@@ -236,6 +238,19 @@ def solveGaussianSystem(degree):
 		equation_string = "Quadratic: "+equation_string
 	elif degree == 3:
 		equation_string = "Cubic: "+equation_string
+
+	#find income at year 15
+	power = 0
+	answer = 0.0
+
+	for n in x_values:
+
+		answer+=pow(15,power)*n
+		power+=1
+
+
+	equation_string+="	Income at year 15: $"+str("{:.2f}".format(answer))
+	equation_string = "\n"+equation_string
 
 	#print coefficients
 	print(equation_string)
